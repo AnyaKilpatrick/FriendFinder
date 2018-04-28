@@ -39,7 +39,6 @@
                         <option value="4">4</option>
                         <option value="5">5 (Strongly Agree)</option>
                     </select>
-                <col-xl-9 col-lg-9 col-md-12 col-sm-12
                 <div class="col-12 my-1">
                     <h3>Question 2</h3>
                     <label class="col-xl-9 col-lg-9 col-md-12 col-sm-12 mr-sm-2">You think that everyone’s views should be respected regardless of whether they are supported by facts or not.</label>
@@ -155,7 +154,7 @@
     <div id = "footer" class="container-fluid mt-3">
         <div class="row justify-content-between">
             <p class="ml-3 pt-3">
-                <a class="whiteLink" href="/friend-finder/api/friends">API Friends List</a> | 
+                <a class="whiteLink" href="/api/friends">API Friends List</a> | 
                 <a class="whiteLink" href="https://github.com/AnyaKilpatrick/FriendFinder" target="_blank">Github Repo</a>
             </p>
             <p class="m-3">Copyright (c) 2018 Hanna Kilpatrick</p>
@@ -197,27 +196,41 @@
 <script>
     $("#add-btn").on("click", function(event) {
         event.preventDefault();
-        var user = {
-            name: $("#userName").val().trim(),
-            photo: $("#userPhoto").val().trim(),
-            scores: [
-                $("#userQ1").val(),
-                $("#userQ2").val(),
-                $("#userQ3").val(),
-                $("#userQ4").val(),
-                $("#userQ5").val(),
-                $("#userQ6").val(),
-                $("#userQ7").val(),
-                $("#userQ8").val(),
-                $("#userQ9").val(),
-                $("#userQ10").val()
-            ]
-        }
-        console.log(user);
+        
+        function validateForm() {
+            var input = $("input").val();
+            var select = $("select").val();
+            //validating
+            if (input === "") {
+                return false;
+            }else if(select === "Choose..."){
+                return false;
+            }else{
+                // grabbing input and creating an object
+                var user = {
+                    name: $("#userName").val().trim(),
+                    photo: $("#userPhoto").val().trim(),
+                    scores: [
+                        $("#userQ1").val(),
+                        $("#userQ2").val(),
+                        $("#userQ3").val(),
+                        $("#userQ4").val(),
+                        $("#userQ5").val(),
+                        $("#userQ6").val(),
+                        $("#userQ7").val(),
+                        $("#userQ8").val(),
+                        $("#userQ9").val(),
+                        $("#userQ10").val()
+                    ]
+                }
+                console.log(user);
 
-        $.post("/friend-finder/api/friends", user, function(data){
-        console.log("New user added successfully: "+data);
-        });
+                $.post("/api/friends", user, function(data){
+                console.log("New user added successfully: "+data);
+                });
+            }
+        }
+        validateForm();
     })
 </script> 
 </body>
