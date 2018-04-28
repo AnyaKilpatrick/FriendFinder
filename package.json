@@ -15,14 +15,15 @@
     "survey",
     "frineds"
   ],
-  "author": "Anya",
-  "license": "ISC",
+  "author": "HannaKilpatrick",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/AnyaKilpatrick/FriendFinder/issues"
   },
   "homepage": "https://github.com/AnyaKilpatrick/FriendFinder#readme",
   "dependencies": {
     "body-parser": "^1.18.2",
-    "express": "^4.16.3"
+    "express": "^4.16.3",
+    "path": "^0.12.7"
   }
 }
