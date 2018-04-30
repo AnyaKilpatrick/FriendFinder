@@ -7,8 +7,8 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
     <title>FriendFinder</title>
 </head>
@@ -150,6 +150,7 @@
             </div>
             <button id="add-btn" type="submit" class="btn btn-secondary btn-lg btn-block mt-3 mr-3 mb-3"><i class="fas fa-user-plus"></i> Submit</button>
         </div>
+        <!-- data-toggle="modal" data-target="#myModal" -->
     </form>
     <div id = "footer" class="container-fluid mt-3">
         <div class="row justify-content-between">
@@ -160,7 +161,26 @@
             <p class="m-3">Copyright (c) 2018 Hanna Kilpatrick</p>
         </div>
     </div>
-
+<!-- MODAL -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            ...
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+        </div>
+    </div>
+</div>
 <!-- CSS -->
 <style>
     body{
@@ -194,43 +214,50 @@
 </style>
 <!-- JavaScript -->
 <script>
-    $("#add-btn").on("click", function(event) {
+    $("#add-btn").on("click", function(event){
         event.preventDefault();
-        
-        function validateForm() {
-            var input = $("input").val();
-            var select = $("select").val();
-            //validating
-            if (input === "") {
-                return false;
-            }else if(select === "Choose..."){
-                return false;
-            }else{
-                // grabbing input and creating an object
-                var user = {
-                    name: $("#userName").val().trim(),
-                    photo: $("#userPhoto").val().trim(),
-                    scores: [
-                        $("#userQ1").val(),
-                        $("#userQ2").val(),
-                        $("#userQ3").val(),
-                        $("#userQ4").val(),
-                        $("#userQ5").val(),
-                        $("#userQ6").val(),
-                        $("#userQ7").val(),
-                        $("#userQ8").val(),
-                        $("#userQ9").val(),
-                        $("#userQ10").val()
-                    ]
+        //validating input
+        function validateForm(){
+            var isValid = true;
+            $(".form-control").each(function(){
+                if($(this).val() === ""){
+                    isValid=false;
                 }
-                console.log(user);
-
-                $.post("/api/friends", user, function(data){
-                console.log("New user added successfully: "+data);
-                });
-            }
+            });
+            $(".custom-select").each(function(){
+                if ($(this).val() === "Choose..."){
+                    isValid = false;
+                }
+            })
+            return isValid;
         }
-        validateForm();
+        if (validateForm()){
+            // grabbing input and creating an object
+            var user = {
+                name: $("#userName").val().trim(),
+                photo: $("#userPhoto").val().trim(),
+                scores: [
+                    $("#userQ1").val(),
+                    $("#userQ2").val(),
+                    $("#userQ3").val(),
+                    $("#userQ4").val(),
+                    $("#userQ5").val(),
+                    $("#userQ6").val(),
+                    $("#userQ7").val(),
+                    $("#userQ8").val(),
+                    $("#userQ9").val(),
+                    $("#userQ10").val()
+                ]
+            }
+            console.log(user);
+
+            $.post("/api/friends", user, function(data){
+            console.log("New user added successfully: "+data);
+            $("#myModal").modal("show");
+            });
+        }else{
+            alert("Please, fill out all fields!");
+        }
     })
 </script> 
 </body>
