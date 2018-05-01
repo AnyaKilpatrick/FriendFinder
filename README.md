@@ -51,6 +51,7 @@ App is comparing the difference between current user's scores against those from
     * User 1: `[5, 1, 4, 4, 5, 1, 2, 5, 4, 1]`
     * User 2: `[3, 2, 6, 4, 5, 1, 2, 5, 4, 1]`
     * Total Difference: **2 + 1 + 2 =** **_5_**
+
 App uses the absolute value of the differences. 
 ```javascript
 var difference = Math.abs(users[m].scores[i] - newUser.scores[i]);
