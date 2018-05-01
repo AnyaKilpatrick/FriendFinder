@@ -11,8 +11,10 @@ module.exports = function(app){
     app.get("/survey", function(req, res){
         res.sendFile(path.join(__dirname, "/../public/survey.html"));
     });
-    //redirects to home page
-    // app.get('*',function (req, res) { //redirecting any route not handled to the index "/"
-    //     res.redirect('/friend-finder/');
-    // });
+    // redirects to home page if not matching route is found
+    app.get('*',function (req, res) {
+        res.sendFile(path.join(__dirname, "/../public/home.html"));
+    });
 }
+
+
