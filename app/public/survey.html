@@ -39,6 +39,7 @@
                         <option value="4">4</option>
                         <option value="5">5 (Strongly Agree)</option>
                     </select>
+                </div>
                 <div class="col-12 my-1">
                     <h3>Question 2</h3>
                     <label class="col-xl-9 col-lg-9 col-md-12 col-sm-12 mr-sm-2">You think that everyone’s views should be respected regardless of whether they are supported by facts or not.</label>
@@ -260,8 +261,11 @@
             $("#bestMatchPhoto").attr("src", data.photo);
             console.log(data.name +" " + data.photo);
             $("#myModal").modal("show");
-            
             });
+
+            // clear the form after it was submitted
+            $(".form-control").val("");
+            $(".custom-select").val("Choose...");
         }else{
             alert("Please, fill out all fields!");
         }
