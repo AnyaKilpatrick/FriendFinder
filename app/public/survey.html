@@ -22,11 +22,11 @@
                 <div class="form-group col-12">
                     <h3>About You</h3>
                     <label>Name (Required)</label>
-                    <input type="text" class="form-control" id="userName">
+                    <input type="text" class="form-control" id="userName" placeholder="Name">
                 </div>
                 <div class="form-group col-12">
                     <label>Link to Photo Image (Required)</label>
-                    <input type="text" class="form-control" id="userPhoto">
+                    <input type="text" class="form-control" id="userPhoto" placeholder="http://...">
                 </div>
                 <div class="col-12 my-1">
                     <h3>Question 1</h3>
@@ -166,17 +166,20 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
         <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+            <h5 class="modal-title" id="exampleModalLabel">We've found your best match!</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
             </button>
         </div>
         <div class="modal-body">
-            ...
+            <div class="row">
+                <!-- content of modal will appear when survey is submitted and best match is found -->
+                <div class="col-12"><h2 id="bestMatchName"></h2></div> 
+                <div class="col-12"><img src="" alt="photo" class="img-fluid" id="bestMatchPhoto"></div>
+            </div>
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Save changes</button>
         </div>
         </div>
     </div>
@@ -252,8 +255,12 @@
             console.log(user);
 
             $.post("/api/friends", user, function(data){
-            console.log("New user added successfully: "+data);
+            console.log("Best macth!!!!!!!!!!: "+data);
+            $("#bestMatchName").text(data.name);
+            $("#bestMatchPhoto").attr("src", data.photo);
+            console.log(data.name +" " + data.photo);
             $("#myModal").modal("show");
+            
             });
         }else{
             alert("Please, fill out all fields!");
