@@ -1,7 +1,7 @@
 var users = [
     {
     "name":"Ahmed",
-    "photo":"https://media.licdn.com/mpr/mpr/shrinknp_400_400/p/6/005/064/1bd/3435aa3.jpg",
+    "photo":"http://orsvp.com/wp-content/uploads/2016/06/ahmed-ahmed-1.jpg",
     "scores":[
         5,
         1,
@@ -17,7 +17,7 @@ var users = [
     },
     {
     "name":"Kate",
-    "photo":"ttp://prettystatus.com/wp-content/uploads/2014/02/mgid-uma-image-mtv-3.jpg",
+    "photo":"http://cdn.cavemancircus.com//wp-content/uploads/images/2015/june/pretty_girls_3/pretty_girls_1.jpg",
     "scores":[
         5,
         4,
@@ -33,7 +33,7 @@ var users = [
     },
     {
     "name":"Rita",
-    "photo":"http://v3wall.com/wallpaper/2560_1600/1002/2560_1600_20100204012001463399.jpg",
+    "photo":"http://cdn.cavemancircus.com//wp-content/uploads/images/2015/june/pretty_girls_3/pretty_girls_2.jpg",
     "scores":[
         1,
         1,
@@ -45,6 +45,38 @@ var users = [
         5,
         4,
         5
+        ]
+    },
+    {
+    "name":"Sara",
+    "photo":"http://cdn.cavemancircus.com//wp-content/uploads/images/2015/june/pretty_girls_3/pretty_girls_5.jpg",
+    "scores":[
+        5,
+        4,
+        1,
+        5,
+        3,
+        3,
+        4,
+        2,
+        4,
+        5
+        ]
+    },
+    {
+    "name":"Jake",
+    "photo":"https://qph.ec.quoracdn.net/main-qimg-ec01093a1a11c8275eff913a37b9d290-c?convert_to_webp=true",
+    "scores":[
+        4,
+        4,
+        1,
+        2,
+        3,
+        3,
+        2,
+        2,
+        1,
+        4
         ]
     }
 ]
