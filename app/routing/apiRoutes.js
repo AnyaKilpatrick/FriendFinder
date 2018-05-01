@@ -26,7 +26,7 @@ module.exports = function(app){
                 score++;
                 if(score === 10){ //when score=10, it means that we looped through all scores of one user, and next 10 numbers will be from another user
                     var match = {
-                        userIndex: m, //userIndex proroperty hold the user index, so after sorting numbers we will know which user this object relates to
+                        userIndex: m, //userIndex proroperty holds the user index, so after sorting numbers we will know which user this object relates to
                         scoreDifference: totalDifference
                     }
                     differences.push(match);//pushing sum to array
@@ -41,10 +41,10 @@ module.exports = function(app){
         });
         console.log("Best match "+ JSON.stringify(differences[0]));//first object is the best match as it has the lowest totalDifference
         var bestMatchUserId = differences[0].userIndex;
-        // module.exports = users[bestMatchUserId];
+        var bestMatch = users[bestMatchUserId];
         //we are pushing newUser to array of users after we checked compatibility
         users.push(newUser);
-        res.json(users);
+        res.json(bestMatch);
     })
 }
 
